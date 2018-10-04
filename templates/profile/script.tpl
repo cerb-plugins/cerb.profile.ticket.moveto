@@ -34,8 +34,24 @@ $(function() {
 	$new_button = $('<button type="button"/>')
 		.attr('title','{'common.move'|devblocks_translate|capitalize}')
 		.append($('<span class="glyphicons glyphicons-inbox"/>'))
-		.on('click', function() {
+		.on('click', function(e) {
+			e.stopPropagation();
+			
 			$menu.toggle();
+			
+			$menu.position({
+				my: 'left top',
+				at: 'right top',
+				of: $new_button,
+				collision: 'fit'
+			});
+			
+			if($menu.is(':visible')) {
+				$('html').one('click.cerb-move-menu', function(e) {
+					e.stopPropagation();
+					$menu.hide();
+				});
+			}
 		})
 		.appendTo($toolbar);
 		;
@@ -65,9 +81,12 @@ $(function() {
 		})
 		.position({
 			my: 'left top',
-			at: 'left bottom',
+			at: 'right top',
 			of: $new_button,
 			collision: 'fit'
+		})
+		.on('click', function(e) {
+			e.stopPropagation();
 		})
 		.appendTo($toolbar)
 		;
