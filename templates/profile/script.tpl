@@ -19,7 +19,7 @@
 	{/foreach}
 {/function}
 
-<ul id="{$menu_id}" class="menu cerb-float" style="width:150px;display:none;">
+<ul id="{$menu_id}" class="menu cerb-float" style="width:300px;display:none;">
 {tree keys=$placeholders}
 </ul>
 
@@ -42,6 +42,7 @@ $(function() {
 		
 	$menu = $('#{$menu_id}')
 		.menu({
+			position: { my: "left middle", at: "right middle", collision: "fit" },
 			select: function(event, ui) {
 				$menu.hide();
 				
@@ -65,7 +66,8 @@ $(function() {
 		.position({
 			my: 'left top',
 			at: 'left bottom',
-			of: $new_button
+			of: $new_button,
+			collision: 'fit'
 		})
 		.appendTo($toolbar)
 		;
