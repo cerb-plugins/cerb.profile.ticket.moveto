@@ -45,13 +45,6 @@ $(function() {
 				of: $new_button,
 				collision: 'fit'
 			});
-			
-			if($menu.is(':visible')) {
-				$('html').one('click.cerb-move-menu', function(e) {
-					e.stopPropagation();
-					$menu.hide();
-				});
-			}
 		})
 		.appendTo($toolbar);
 		;
@@ -60,12 +53,12 @@ $(function() {
 		.menu({
 			position: { my: "left middle", at: "right middle", collision: "fit" },
 			select: function(event, ui) {
-				$menu.hide();
-				
 				var bucket_id = ui.item.attr('data-token');
 				
 				if(null == bucket_id)
 					return;
+				
+				$menu.hide();
 				
 				var params = {
 					'c': 'display',
@@ -84,9 +77,6 @@ $(function() {
 			at: 'right top',
 			of: $new_button,
 			collision: 'fit'
-		})
-		.on('click', function(e) {
-			e.stopPropagation();
 		})
 		.appendTo($toolbar)
 		;
